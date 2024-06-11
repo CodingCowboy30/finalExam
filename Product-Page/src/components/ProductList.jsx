@@ -1,26 +1,41 @@
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Card, CardContent, Typography, CardMedia, Grid, Box } from '@mui/material'
+import { Card, CardContent, Typography, CardMedia, Grid, Box, IconButton } from '@mui/material'
 import { Link } from 'react-router-dom'
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 
 // Styled Components
 const StyledCard = styled(Card)`
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   }
 `
 
 const StyledCardMedia = styled(CardMedia)`
-  height: 200px;
+  height: 300px;
   object-fit: cover;
 `
 
+const StyledTypography = styled(Typography)`
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #333;
+`
+
+const LikeButton = styled(IconButton)`
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  color: rgba(0, 0, 0, 0.54);
+`
+
 const ProductList = ({ products }) => (
-  <Box padding={2}>
-    <Grid container spacing={3}>
+  <Box padding={3}>
+    <Grid container spacing={4}>
       {products.map((product) => (
         <Grid item xs={12} sm={6} md={4} lg={3} key={product.id}>
           <Link to={`/product/${product.id}`} style={{ textDecoration: 'none' }}>
@@ -31,15 +46,18 @@ const ProductList = ({ products }) => (
                 image={product.image}
               />
               <CardContent>
-                <Typography variant="h6" gutterBottom>
+                <StyledTypography variant="h6" gutterBottom>
                   {product.title}
-                </Typography>
-                <Typography variant="body2" color="textSecondary">
+                </StyledTypography>
+                <StyledTypography variant="body2" color="textSecondary">
                   ${product.price}
-                </Typography>
-                <Typography variant="body2" color="textSecondary">
+                </StyledTypography>
+                <StyledTypography variant="body2" color="textSecondary">
                   Rating: {product.rating.rate}
-                </Typography>
+                </StyledTypography>
+                <LikeButton aria-label="add to favorites">
+                  <FavoriteBorderIcon />
+                </LikeButton>
               </CardContent>
             </StyledCard>
           </Link>
