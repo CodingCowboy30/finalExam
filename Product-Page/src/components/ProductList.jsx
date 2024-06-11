@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Card, CardContent, Typography, CardMedia, Grid, Box } from '@mui/material'
+import { Link } from 'react-router-dom'
 
 // Styled Components
 const StyledCard = styled(Card)`
@@ -17,17 +18,12 @@ const StyledCardMedia = styled(CardMedia)`
   object-fit: cover;
 `
 
-const StyledLink = styled.div`
-  text-decoration: none;
-  color: inherit;
-`
-
-const ProductList = ({ products, onProductClick }) => (
+const ProductList = ({ products }) => (
   <Box padding={2}>
     <Grid container spacing={3}>
       {products.map((product) => (
         <Grid item xs={12} sm={6} md={4} lg={3} key={product.id}>
-          <StyledLink onClick={() => onProductClick(product)}>
+          <Link to={`/product/${product.id}`} style={{ textDecoration: 'none' }}>
             <StyledCard>
               <StyledCardMedia
                 component="img"
@@ -46,7 +42,7 @@ const ProductList = ({ products, onProductClick }) => (
                 </Typography>
               </CardContent>
             </StyledCard>
-          </StyledLink>
+          </Link>
         </Grid>
       ))}
     </Grid>
@@ -67,7 +63,6 @@ ProductList.propTypes = {
       }).isRequired
     })
   ).isRequired,
-  onProductClick: PropTypes.func.isRequired
 }
 
 export default ProductList

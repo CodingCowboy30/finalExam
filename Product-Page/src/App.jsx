@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react'
+import  { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import ProductList from './components/ProductList'
-
-// Styled Components
 import { Box } from '@mui/material'
 
 const App = () => {
@@ -26,11 +25,13 @@ const App = () => {
   if (error) return <p>Error: {error.message}</p>
 
   return (
-    <Box padding={2}>
-      <ProductList products={products} onProductClick={(product) => {
-        console.log('Product clicked:', product)
-      }} />
-    </Box>
+    <Router>
+      <Box padding={2}>
+        <Routes>
+          <Route path="/" element={<ProductList products={products} />} />
+        </Routes>
+      </Box>
+    </Router>
   )
 }
 
