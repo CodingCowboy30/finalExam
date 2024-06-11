@@ -1,5 +1,6 @@
-import styled from 'styled-components';
-import { Card, CardContent, Typography, CardMedia, Grid, Box } from '@mui/material';
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
+import { Card, CardContent, Typography, CardMedia, Grid, Box } from '@mui/material'
 
 // Styled Components
 const StyledCard = styled(Card)`
@@ -9,17 +10,17 @@ const StyledCard = styled(Card)`
   &:hover {
     transform: scale(1.05);
   }
-`;
+`
 
 const StyledCardMedia = styled(CardMedia)`
   height: 200px;
   object-fit: cover;
-`;
+`
 
 const StyledLink = styled.div`
   text-decoration: none;
   color: inherit;
-`;
+`
 
 const ProductList = ({ products, onProductClick }) => (
   <Box padding={2}>
@@ -50,6 +51,23 @@ const ProductList = ({ products, onProductClick }) => (
       ))}
     </Grid>
   </Box>
-);
+)
 
-export default ProductList;
+ProductList.propTypes = {
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      description: PropTypes.string,
+      image: PropTypes.string.isRequired,
+      rating: PropTypes.shape({
+        rate: PropTypes.number.isRequired,
+        count: PropTypes.number
+      }).isRequired
+    })
+  ).isRequired,
+  onProductClick: PropTypes.func.isRequired
+}
+
+export default ProductList
