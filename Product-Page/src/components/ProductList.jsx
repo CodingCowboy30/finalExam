@@ -17,19 +17,19 @@ const StyledCard = styled(Card)`
 `
 
 const StyledCardMedia = styled(CardMedia)`
-  height: 300px;
-  object-fit: cover;
+  width: 100%;
+  object-fit: none;
 `
 
 const StyledTypography = styled(Typography)`
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  color: #333;
+  color: #6d2020a3;
 `
 
 const LikeButton = styled(IconButton)`
   position: absolute;
-  bottom: 16px;
-  right: 16px;
+  bottom: 1px;
+  left: 350px;
   color: rgba(0, 0, 0, 0.54);
 `
 
