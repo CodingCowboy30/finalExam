@@ -1,3 +1,4 @@
+
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Card, CardContent, Typography, CardMedia, Grid, Box, IconButton } from '@mui/material'
@@ -17,19 +18,20 @@ const StyledCard = styled(Card)`
 `
 
 const StyledCardMedia = styled(CardMedia)`
+  height: 250px;
   width: 100%;
-  object-fit: none;
+  object-fit: cover;
 `
 
 const StyledTypography = styled(Typography)`
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  color: #6d2020a3;
+  color: #333;
 `
 
 const LikeButton = styled(IconButton)`
   position: absolute;
-  bottom: 1px;
-  left: 350px;
+  bottom: 16px;
+  right: 16px;
   color: rgba(0, 0, 0, 0.54);
 `
 
