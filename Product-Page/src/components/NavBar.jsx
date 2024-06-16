@@ -48,10 +48,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const NavBar = () => {
   return (
-    <AppBar position="static" color="default">
+    <AppBar position="sticky" color="default">
       <Toolbar>
         <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
-          My Shop
+          Fashion and Gadgets
         </Typography>
         <Search>
           <SearchIconWrapper>

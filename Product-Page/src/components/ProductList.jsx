@@ -1,9 +1,11 @@
+// src/components/ProductList.jsx
 
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Card, CardContent, Typography, CardMedia, Grid, Box, IconButton } from '@mui/material'
+import { Card, CardContent, Typography, CardMedia, Box, IconButton } from '@mui/material'
 import { Link } from 'react-router-dom'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
+import Slider from 'react-slick'
 
 // Styled Components
 const StyledCard = styled(Card)`
@@ -35,39 +37,83 @@ const LikeButton = styled(IconButton)`
   color: rgba(0, 0, 0, 0.54);
 `
 
-const ProductList = ({ products }) => (
-  <Box padding={3}>
-    <Grid container spacing={4}>
-      {products.map((product) => (
-        <Grid item xs={12} sm={6} md={4} lg={3} key={product.id}>
-          <Link to={`/product/${product.id}`} style={{ textDecoration: 'none' }}>
-            <StyledCard>
-              <StyledCardMedia
-                component="img"
-                alt={product.title}
-                image={product.image}
-              />
-              <CardContent>
-                <StyledTypography variant="h6" gutterBottom>
-                  {product.title}
-                </StyledTypography>
-                <StyledTypography variant="body2" color="textSecondary">
-                  ${product.price}
-                </StyledTypography>
-                <StyledTypography variant="body2" color="textSecondary">
-                  Rating: {product.rating.rate}
-                </StyledTypography>
-                <LikeButton aria-label="add to favorites">
-                  <FavoriteBorderIcon />
-                </LikeButton>
-              </CardContent>
-            </StyledCard>
-          </Link>
-        </Grid>
-      ))}
-    </Grid>
-  </Box>
-)
+const StyledSlider = styled(Slider)`
+  .slick-slide {
+    padding: 0 10px;
+  }
+
+  .slick-prev,
+  .slick-next {
+    z-index: 1;
+  }
+`
+
+const ProductList = ({ products }) => {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  }
+
+  return (
+    <Box padding={3}>
+      <StyledSlider {...settings}>
+        {products.map((product) => (
+          <div key={product.id}>
+            <Link to={`/product/${product.id}`} style={{ textDecoration: 'none' }}>
+              <StyledCard>
+                <StyledCardMedia
+                  component="img"
+                  alt={product.title}
+                  image={product.image}
+                />
+                <CardContent>
+                  <StyledTypography variant="h6" gutterBottom>
+                    {product.title}
+                  </StyledTypography>
+                  <StyledTypography variant="body2" color="textSecondary">
+                    ${product.price}
+                  </StyledTypography>
+                  <StyledTypography variant="body2" color="textSecondary">
+                    Rating: {product.rating.rate}
+                  </StyledTypography>
+                  <LikeButton aria-label="add to favorites">
+                    <FavoriteBorderIcon />
+                  </LikeButton>
+                </CardContent>
+              </StyledCard>
+            </Link>
+          </div>
+        ))}
+      </StyledSlider>
+    </Box>
+  )
+}
 
 ProductList.propTypes = {
   products: PropTypes.arrayOf(
