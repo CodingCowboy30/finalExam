@@ -1,16 +1,16 @@
-
 import { AppBar, Toolbar, Typography, IconButton, Box, InputBase } from '@mui/material'
-import { styled } from '@mui/material/styles'
+import { styled, alpha } from '@mui/material/styles'
 import SearchIcon from '@mui/icons-material/Search'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import FavoriteIcon from '@mui/icons-material/Favorite'
+import { Link } from 'react-router-dom'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: theme.palette.common.white,
+  backgroundColor: alpha(theme.palette.common.white, 0.15),
   '&:hover': {
-    backgroundColor: theme.palette.grey[200],
+    backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
   marginLeft: 0,
   width: '100%',
@@ -28,10 +28,11 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  color: '#ffffff', // Change search icon color here
 }))
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
+  color: '#ffffff', // Change text color here
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
@@ -43,16 +44,26 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
         width: '20ch',
       },
     },
+    '::placeholder': {
+      color: '#cccccc', // Change placeholder color here
+    },
   },
 }))
 
-const NavBar = () => {
+const NavBar = ({ onSearch }) => {
+  const handleInputChange = (event) => {
+    onSearch(event.target.value)
+  }
+
   return (
-    <AppBar position="sticky" color="default">
+    <AppBar position="static" color="primary">
       <Toolbar>
-        <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
-          Fashion and Gadgets
-        </Typography>
+        <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+          <Typography variant="h6" noWrap component="div">
+            Gadgets & Fashion
+          </Typography>
+        </Link>
+        <Box sx={{ flexGrow: 1 }} />
         <Search>
           <SearchIconWrapper>
             <SearchIcon />
@@ -60,12 +71,15 @@ const NavBar = () => {
           <StyledInputBase
             placeholder="Search…"
             inputProps={{ 'aria-label': 'search' }}
+            onChange={handleInputChange}
           />
         </Search>
         <Box sx={{ flexGrow: 1 }} />
-        <IconButton color="inherit">
-          <FavoriteIcon />
-        </IconButton>
+        <Link to="/liked" style={{ color: 'inherit' }}>
+          <IconButton color="inherit">
+            <FavoriteIcon />
+          </IconButton>
+        </Link>
         <IconButton color="inherit">
           <ShoppingCartIcon />
         </IconButton>

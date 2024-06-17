@@ -12,7 +12,7 @@ const Footer = () => {
   return (
     <StyledFooter>
       <Typography variant="body2" color="textSecondary">
-        &copy; 2024 My Shop. All rights reserved.
+        &copy; 2024 Gadgets & Fashion. All rights reserved.
       </Typography>
     </StyledFooter>
   )

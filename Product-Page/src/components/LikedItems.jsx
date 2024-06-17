@@ -1,14 +1,9 @@
-// src/components/ProductList.jsx
-
+// src/components/LikedItems.jsx
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Card, CardContent, Typography, CardMedia, Box, IconButton } from '@mui/material'
 import { Link } from 'react-router-dom'
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import FavoriteIcon from '@mui/icons-material/Favorite'
-import Slider from 'react-slick'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
 
 // Styled Components
 const StyledCard = styled(Card)`
@@ -37,57 +32,18 @@ const LikeButton = styled(IconButton)`
   position: absolute;
   bottom: 16px;
   right: 16px;
-  color: ${({ liked }) => (liked ? 'red' : 'rgba(0, 0, 0, 0.54)')}; // Change color based on liked state
+  color: red;
 `
 
-const StyledSlider = styled(Slider)`
-  .slick-slide {
-    padding: auto;
-  }
-
-  .slick-prev,
-  .slick-next {
-    z-index: 1;
-  }
-`
-
-const ProductList = ({ products, likedItems, onToggleLike }) => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 4,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  }
-
+const LikedItems = ({ likedItems, onToggleLike }) => {
   return (
     <Box padding={3}>
-      <StyledSlider {...settings}>
-        {products.map((product) => (
-          <div key={product.id}>
+      <Typography variant="h4" gutterBottom>
+        My Favorites
+      </Typography>
+      <Box display="flex" flexWrap="wrap" justifyContent="center">
+        {likedItems.map((product) => (
+          <Box key={product.id} padding={2}>
             <Link to={`/product/${product.id}`} style={{ textDecoration: 'none' }}>
               <StyledCard>
                 <StyledCardMedia
@@ -106,27 +62,26 @@ const ProductList = ({ products, likedItems, onToggleLike }) => {
                     Rating: {product.rating.rate}
                   </StyledTypography>
                   <LikeButton
-                    aria-label="add to favorites"
-                    liked={!!likedItems.find(item => item.id === product.id)}
+                    aria-label="remove from favorites"
                     onClick={(e) => {
                       e.preventDefault()
                       onToggleLike(product)
                     }}
                   >
-                    {likedItems.find(item => item.id === product.id) ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+                    <FavoriteIcon />
                   </LikeButton>
                 </CardContent>
               </StyledCard>
             </Link>
-          </div>
+          </Box>
         ))}
-      </StyledSlider>
+      </Box>
     </Box>
   )
 }
 
-ProductList.propTypes = {
-  products: PropTypes.arrayOf(
+LikedItems.propTypes = {
+  likedItems: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
@@ -139,12 +94,7 @@ ProductList.propTypes = {
       }).isRequired
     })
   ).isRequired,
-  likedItems: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired
-    })
-  ).isRequired,
   onToggleLike: PropTypes.func.isRequired,
 }
 
-export default ProductList
+export default LikedItems
