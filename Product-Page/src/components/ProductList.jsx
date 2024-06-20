@@ -16,13 +16,13 @@ const StyledCard = styled(Card)`
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s, box-shadow 0.3s;
-  position: sticky;
-  width: 50%;  /* Ensure cards take full width of the slide */
-  height: 45vh;
+  position: relative;
+  width: 80%;  /* Ensure cards take full width of the slide */
+  height: 400px;
   padding: 1px 20px 0px 10px;
   &:hover {
     transform: scale(1.03);
-    box-shadow: 0 4px 20px rgba(64, 224, 208, 0.6);
+    box-shadow: 0px 40px 60px rgba(64, 224, 208, 0.9);
   }
 `
 
@@ -48,7 +48,7 @@ const LikeButton = styled(IconButton)`
 const StyledSlider = styled(Slider)`
   .slick-slide {
     padding: 1px 2px 0.5px 3px;
-    margin: 20px 0px -90px -1px;
+    margin: 20px 0px 30px -1px;
   }
 
   .slick-prev,

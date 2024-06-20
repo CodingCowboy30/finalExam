@@ -7,6 +7,8 @@ body {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, #a7a5a2 10%, #0b475b 100%); /* Tan to Light Blue gradient */
+  color: #000000; /* Text color */
 }
 
 code {
@@ -14,7 +16,7 @@ code {
 }
 
 * {
-  box-sizing: border-box;
+  box-sizing: border;
 }
 
 a {

@@ -5,10 +5,10 @@ import { Fade } from 'react-awesome-reveal'
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa'
 
 const StyledFooter = styled(Box)`
-  background: linear-gradient(to right, #C0C0C0, #ADD8E6);
-  padding: 20px 0;
+  background: linear-gradient(to right, #1e1d1da0, #2f78df);
+  padding: 30px 10px;
   text-align: center;
-  border-top: 1px solid #e7e7e7;
+  border: 4px solid #0c0606;
 `
 
 const IconContainer = styled(Box)`

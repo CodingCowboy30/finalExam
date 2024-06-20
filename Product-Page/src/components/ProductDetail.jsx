@@ -17,7 +17,7 @@ const StyledCardMedia = styled(CardMedia)`
 `
 
 const StyledButton = styled(Button)`
-  margin-top: 20px;
+  margin-top: 30px;
 `
 
 const LoadingContainer = styled(Box)`
