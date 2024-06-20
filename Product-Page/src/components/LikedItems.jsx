@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { Card, CardContent, Typography, CardMedia, Box, IconButton } from '@mui/material'
 import { Link } from 'react-router-dom'
 import FavoriteIcon from '@mui/icons-material/Favorite'
+import { motion } from 'framer-motion'
 
 // Styled Components
 const StyledCard = styled(Card)`
@@ -45,7 +46,7 @@ const LikedItems = ({ likedItems, onToggleLike }) => {
         {likedItems.map((product) => (
           <Box key={product.id} padding={2}>
             <Link to={`/product/${product.id}`} style={{ textDecoration: 'none' }}>
-              <StyledCard>
+              <StyledCard as={motion.div} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <StyledCardMedia
                   component="img"
                   alt={product.title}
@@ -67,6 +68,9 @@ const LikedItems = ({ likedItems, onToggleLike }) => {
                       e.preventDefault()
                       onToggleLike(product)
                     }}
+                    component={motion.div}
+                    whileHover={{ scale: 1.2 }}
+                    whileTap={{ scale: 0.9 }}
                   >
                     <FavoriteIcon />
                   </LikeButton>

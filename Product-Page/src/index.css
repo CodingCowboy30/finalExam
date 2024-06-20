@@ -5,6 +5,16 @@
 body {
   margin: 0;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 a {
@@ -12,3 +22,14 @@ a {
   color: inherit;
 }
 
+.slick-prev:before, .slick-next:before {
+  color: #333;
+}
+
+.slick-dots li button:before {
+  color: #333;
+}
+
+.slick-dots li.slick-active button:before {
+  color: #000;
+}

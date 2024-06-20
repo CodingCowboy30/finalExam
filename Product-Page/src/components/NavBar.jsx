@@ -4,6 +4,7 @@ import SearchIcon from '@mui/icons-material/Search'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -59,7 +60,14 @@ const NavBar = ({ onSearch }) => {
     <AppBar position="static" color="primary">
       <Toolbar>
         <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-          <Typography variant="h6" noWrap component="div">
+          <Typography
+            variant="h6"
+            noWrap
+            component={motion.div}
+            initial={{ opacity: 0, x: -100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+          >
             Gadgets & Fashion
           </Typography>
         </Link>
@@ -72,15 +80,29 @@ const NavBar = ({ onSearch }) => {
             placeholder="Search…"
             inputProps={{ 'aria-label': 'search' }}
             onChange={handleInputChange}
+            component={motion.input}
+            initial={{ width: '12ch' }}
+            whileFocus={{ width: '20ch' }}
+            transition={{ duration: 0.2 }}
           />
         </Search>
         <Box sx={{ flexGrow: 1 }} />
         <Link to="/liked" style={{ color: 'inherit' }}>
-          <IconButton color="inherit">
+          <IconButton
+            color="inherit"
+            component={motion.div}
+            whileHover={{ scale: 1.2 }}
+            whileTap={{ scale: 0.9 }}
+          >
             <FavoriteIcon />
           </IconButton>
         </Link>
-        <IconButton color="inherit">
+        <IconButton
+          color="inherit"
+          component={motion.div}
+          whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 0.9 }}
+        >
           <ShoppingCartIcon />
         </IconButton>
       </Toolbar>

@@ -58,7 +58,7 @@ const App = () => {
   return (
     <Router>
       <NavBar onSearch={handleSearch} />
-      <Box padding={2}>
+      <Box padding={0} marginBottom={0}>
         <Routes>
           <Route path="/" element={<ProductList products={filteredProducts} likedItems={likedItems} onToggleLike={handleToggleLike} />} />
           <Route path="/product/:id" element={<ProductDetail />} />
