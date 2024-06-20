@@ -9,7 +9,7 @@ import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import { NextArrow, PrevArrow } from './CustomArrows'
-import { motion } from 'framer-motion'
+import { Fade } from 'react-awesome-reveal'
 
 // Styled Components
 const StyledCard = styled(Card)`
@@ -22,7 +22,7 @@ const StyledCard = styled(Card)`
   padding: 1px 20px 0px 10px;
   &:hover {
     transform: scale(1.03);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 20px rgba(64, 224, 208, 0.6);
   }
 `
 
@@ -96,41 +96,40 @@ const ProductList = ({ products, likedItems, onToggleLike }) => {
     <Box padding={[1, 3]} marginBottom={[1, 5]}>
       <StyledSlider {...settings}>
         {products.map((product) => (
-          <div key={product.id}>
-            <Link to={`/product/${product.id}`} style={{ textDecoration: 'none' }}>
-              <StyledCard as={motion.div} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <StyledCardMedia
-                  component="img"
-                  alt={product.title}
-                  image={product.image}
-                />
-                <CardContent>
-                  <StyledTypography variant="h6" gutterBottom>
-                    {product.title}
-                  </StyledTypography>
-                  <StyledTypography variant="body2" color="textSecondary">
-                    ${product.price}
-                  </StyledTypography>
-                  <StyledTypography variant="body2" color="textSecondary">
-                    Rating: {product.rating.rate}
-                  </StyledTypography>
-                  <LikeButton
-                    aria-label="add to favorites"
-                    liked={!!likedItems.find(item => item.id === product.id)}
-                    onClick={(e) => {
-                      e.preventDefault()
-                      onToggleLike(product)
-                    }}
-                    component={motion.div}
-                    whileHover={{ scale: 1.2 }}
-                    whileTap={{ scale: 0.9 }}
-                  >
-                    {likedItems.find(item => item.id === product.id) ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-                  </LikeButton>
-                </CardContent>
-              </StyledCard>
-            </Link>
-          </div>
+          <Fade key={product.id}>
+            <div>
+              <Link to={`/product/${product.id}`} style={{ textDecoration: 'none' }}>
+                <StyledCard>
+                  <StyledCardMedia
+                    component="img"
+                    alt={product.title}
+                    image={product.image}
+                  />
+                  <CardContent>
+                    <StyledTypography variant="h6" gutterBottom>
+                      {product.title}
+                    </StyledTypography>
+                    <StyledTypography variant="body2" color="textSecondary">
+                      ${product.price}
+                    </StyledTypography>
+                    <StyledTypography variant="body2" color="textSecondary">
+                      Rating: {product.rating.rate}
+                    </StyledTypography>
+                    <LikeButton
+                      aria-label="add to favorites"
+                      liked={!!likedItems.find(item => item.id === product.id)}
+                      onClick={(e) => {
+                        e.preventDefault()
+                        onToggleLike(product)
+                      }}
+                    >
+                      {likedItems.find(item => item.id === product.id) ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+                    </LikeButton>
+                  </CardContent>
+                </StyledCard>
+              </Link>
+            </div>
+          </Fade>
         ))}
       </StyledSlider>
     </Box>

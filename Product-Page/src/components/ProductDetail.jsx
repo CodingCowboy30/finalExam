@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { Card, CardContent, Typography, CardMedia, Box, Button, CircularProgress } from '@mui/material'
-import { motion } from 'framer-motion'
+import { Fade } from 'react-awesome-reveal'
 
 // Styled Components
 const StyledCard = styled(Card)`
@@ -66,28 +66,27 @@ const ProductDetail = () => {
 
   return (
     <Box padding={2}>
-      <StyledCard as={motion.div} initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-        <StyledCardMedia
-          component="img"
-          alt={product.title}
-          image={product.image}
-        />
-        <CardContent>
-          <Typography variant="h4">{product.title}</Typography>
-          <Typography variant="body1">${product.price}</Typography>
-          <Typography variant="body2">Rating: {product.rating.rate}</Typography>
-          <Typography variant="body2">{product.description}</Typography>
-          <StyledButton
-            variant="contained"
-            onClick={() => navigate(-1)}
-            component={motion.button}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            Back
-          </StyledButton>
-        </CardContent>
-      </StyledCard>
+      <Fade direction="up">
+        <StyledCard>
+          <StyledCardMedia
+            component="img"
+            alt={product.title}
+            image={product.image}
+          />
+          <CardContent>
+            <Typography variant="h4">{product.title}</Typography>
+            <Typography variant="body1">${product.price}</Typography>
+            <Typography variant="body2">Rating: {product.rating.rate}</Typography>
+            <Typography variant="body2">{product.description}</Typography>
+            <StyledButton
+              variant="contained"
+              onClick={() => navigate(-1)}
+            >
+              Back
+            </StyledButton>
+          </CardContent>
+        </StyledCard>
+      </Fade>
     </Box>
   )
 }

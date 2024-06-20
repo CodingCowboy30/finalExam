@@ -14,7 +14,7 @@ const StyledCard = styled(Card)`
   position: relative;
   &:hover {
     transform: scale(1.03);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 20px rgba(64, 224, 208, 0.6);
   }
 `
 

@@ -7,7 +7,7 @@ import { motion } from 'framer-motion'
 
 const ArrowButton = styled(IconButton)`
   position: absolute;
-  top: 30%;
+  top: 4ch;
   color: #070707;
 `
 
