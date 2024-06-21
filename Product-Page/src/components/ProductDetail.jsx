@@ -12,8 +12,8 @@ const StyledCard = styled(Card)`
 `
 
 const StyledCardMedia = styled(CardMedia)`
-  height: 400px;
-  object-fit: cover;
+  height: 10%;
+  object-fit: fill;
 `
 
 const StyledButton = styled(Button)`

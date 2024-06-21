@@ -1,49 +1,50 @@
 // src/components/Footer.jsx
+
 import { Box, Typography } from '@mui/material'
 import styled from 'styled-components'
 import { Fade } from 'react-awesome-reveal'
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa'
 
 const StyledFooter = styled(Box)`
-  background: linear-gradient(to right, #1e1d1da0, #2f78df);
-  padding: 30px 10px;
+  background: linear-gradient(135deg, #C0C0C0, #ADD8E6);
+  padding: 10px ;
   text-align: center;
-  border: 4px solid #0c0606;
+  border-top: 1px solid #e7e7e7;
 `
 
 const IconContainer = styled(Box)`
   display: flex;
   justify-content: center;
-  gap: 15px;
-  margin-top: 10px;
+  gap: 50px;
+  margin-top: -1px;
 `
 
 const SocialIcon = styled.div`
   color: grey;
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   &:hover {
-    color: ${({ hoverColor }) => hoverColor};
+    color: ${({ $hoverColor }) => $hoverColor}; // Use transient prop
   }
 `
 
 const Footer = () => {
   return (
     <StyledFooter>
-      <Fade direction="up">
-        <Typography variant="body2" color="textSecondary">
+      <Fade direction='down'>
+        <Typography variant='body1' color='textSecondary'>
           &copy; 2024 Gadgets & Fashion. All rights reserved.
         </Typography>
         <IconContainer>
-          <SocialIcon hoverColor="#4267B2">
+          <SocialIcon $hoverColor='#4267B2'>
             <FaFacebookF />
           </SocialIcon>
-          <SocialIcon hoverColor="#1DA1F2">
+          <SocialIcon $hoverColor='#1DA1F2'>
             <FaTwitter />
           </SocialIcon>
-          <SocialIcon hoverColor="#E1306C">
+          <SocialIcon $hoverColor='#E1306C'>
             <FaInstagram />
           </SocialIcon>
-          <SocialIcon hoverColor="#2867B2">
+          <SocialIcon $hoverColor='#2867B2'>
             <FaLinkedinIn />
           </SocialIcon>
         </IconContainer>

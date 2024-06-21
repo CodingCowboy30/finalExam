@@ -9,6 +9,7 @@ import { motion } from 'framer-motion'
 // Styled Components
 const StyledCard = styled(Card)`
   border-radius: 10px;
+  border: solid ;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s, box-shadow 0.3s;
   position: relative;
@@ -19,9 +20,10 @@ const StyledCard = styled(Card)`
 `
 
 const StyledCardMedia = styled(CardMedia)`
-  height: 250px;
-  width: 100%;
-  object-fit: cover;
+  height: auto;
+  width: auto;
+  justify-content:space-between;
+  object-fit: scale-down;
 `
 
 const StyledTypography = styled(Typography)`
@@ -30,10 +32,10 @@ const StyledTypography = styled(Typography)`
 `
 
 const LikeButton = styled(IconButton)`
-  position: absolute;
-  bottom: 16px;
-  right: 16px;
-  color: red;
+  position: relative;
+  bottom: auto;
+  right: auto;
+  color: #f60000;
 `
 
 const LikedItems = ({ likedItems, onToggleLike }) => {

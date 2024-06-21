@@ -6,8 +6,8 @@ import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
 const ArrowButton = styled(IconButton)`
-  position: absolute;
-  top: 4ch;
+  position: static;
+  top: 2ch;
   color: #070707;
 `
 
@@ -16,7 +16,7 @@ export const NextArrow = (props) => {
   return (
     <ArrowButton
       className={className}
-      style={{ ...style, right: 40 }}
+      style={{ ...style, right: -750 }}
       onClick={onClick}
       component={motion.div}
       whileHover={{ scale: 1.2 }}

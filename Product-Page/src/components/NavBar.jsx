@@ -1,5 +1,3 @@
-// src/components/NavBar.jsx
-
 import { AppBar, Toolbar, Typography, IconButton, Box, InputBase } from '@mui/material'
 import { styled, alpha } from '@mui/material/styles'
 import SearchIcon from '@mui/icons-material/Search'
@@ -31,11 +29,11 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  color: theme.palette.text.primary,
+  color: '#ffffff', // Change search icon color here
 }))
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: theme.palette.text.primary,
+  color: '#ffffff', // Change text color here
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
@@ -48,7 +46,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
       },
     },
     '::placeholder': {
-      color: '#cccccc',
+      color: '#cccccc', // Change placeholder color here
     },
   },
 }))

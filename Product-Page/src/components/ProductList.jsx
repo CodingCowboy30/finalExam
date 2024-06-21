@@ -16,39 +16,39 @@ const StyledCard = styled(Card)`
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s, box-shadow 0.3s;
-  position: relative;
-  width: 80%;  /* Ensure cards take full width of the slide */
-  height: 400px;
-  padding: 1px 20px 0px 10px;
+  position: static;
+  width: 60%;  /* Ensure cards take full width of the slide */
+  height: 45%;
+ // padding: 10px 30px 10px 90px;
   &:hover {
     transform: scale(1.03);
-    box-shadow: 0px 40px 60px rgba(64, 224, 208, 0.9);
+    box-shadow: 0 4px 20px rgba(64, 224, 208, 0.6);
   }
 `
 
 const StyledCardMedia = styled(CardMedia)`
-  padding: 10px;
-  height: 200px;
+  padding: 2px -1px;
+  height: 40%;
   width: 100%;
   object-fit: scale-down;
 `
 
 const StyledTypography = styled(Typography)`
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+ font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: #333;
 `
 
 const LikeButton = styled(IconButton)`
   position: absolute;
-  bottom: 16px;
-  right: 16px;
-  color: ${({ liked }) => (liked ? 'red' : 'rgba(0, 0, 0, 0.54)')}; // Change color based on liked state
+  bottom: -16px;
+  right: -160px;
+  color: ${({ liked }) => (liked === true ? 'red' : 'rgb(255, 0, 0)')}; // Change color based on liked state
 `
 
 const StyledSlider = styled(Slider)`
   .slick-slide {
-    padding: 1px 2px 0.5px 3px;
-    margin: 20px 0px 30px -1px;
+    padding: -1px;
+    
   }
 
   .slick-prev,
@@ -57,7 +57,7 @@ const StyledSlider = styled(Slider)`
   }
 `
 
-const ProductList = ({ products, likedItems, onToggleLike }) => {
+const ProductList = ({ products = [], likedItems, onToggleLike }) => {
   const settings = {
     dots: true, // Show dots
     infinite: true,
@@ -93,44 +93,53 @@ const ProductList = ({ products, likedItems, onToggleLike }) => {
   }
 
   return (
-    <Box padding={[1, 3]} marginBottom={[1, 5]}>
+    <Box padding={[1, 4]} marginBottom={[9, 3]}>
       <StyledSlider {...settings}>
-        {products.map((product) => (
-          <Fade key={product.id}>
-            <div>
-              <Link to={`/product/${product.id}`} style={{ textDecoration: 'none' }}>
-                <StyledCard>
-                  <StyledCardMedia
-                    component="img"
-                    alt={product.title}
-                    image={product.image}
-                  />
-                  <CardContent>
-                    <StyledTypography variant="h6" gutterBottom>
-                      {product.title}
-                    </StyledTypography>
-                    <StyledTypography variant="body2" color="textSecondary">
-                      ${product.price}
-                    </StyledTypography>
-                    <StyledTypography variant="body2" color="textSecondary">
-                      Rating: {product.rating.rate}
-                    </StyledTypography>
-                    <LikeButton
-                      aria-label="add to favorites"
-                      liked={!!likedItems.find(item => item.id === product.id)}
-                      onClick={(e) => {
-                        e.preventDefault()
-                        onToggleLike(product)
-                      }}
-                    >
-                      {likedItems.find(item => item.id === product.id) ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-                    </LikeButton>
-                  </CardContent>
-                </StyledCard>
-              </Link>
-            </div>
-          </Fade>
-        ))}
+        {products.length > 0 ? (
+          products.map((product) => {
+            const isLiked = likedItems.some(item => item.id === product.id)
+            return (
+              <Fade key={product.id}>
+                <div>
+                  <Link to={`/product/${product.id}`} style={{ textDecoration: 'none' }}>
+                    <StyledCard>
+                      <StyledCardMedia
+                        component='img'
+                        alt={product.title}
+                        image={product.image}
+                      />
+                      <CardContent>
+                        <StyledTypography variant='h6' gutterBottom>
+                          {product.title}
+                        </StyledTypography>
+                        <StyledTypography variant='body2' color='textSecondary'>
+                          ${product.price}
+                        </StyledTypography>
+                        <StyledTypography variant='body2' color='textSecondary'>
+                          Rating: {product.rating.rate}
+                        </StyledTypography>
+                        <LikeButton
+                          aria-label='add to favorites'
+                          liked={isLiked.toString()} // Pass string instead of boolean
+                          onClick={(e) => {
+                            e.preventDefault()
+                            onToggleLike(product)
+                          }}
+                        >
+                          {isLiked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+                        </LikeButton>
+                      </CardContent>
+                    </StyledCard>
+                  </Link>
+                </div>
+              </Fade>
+            )
+          })
+        ) : (
+          <Typography variant='h6' color='textSecondary'>
+            No products available.
+          </Typography>
+        )}
       </StyledSlider>
     </Box>
   )
@@ -149,7 +158,7 @@ ProductList.propTypes = {
         count: PropTypes.number
       }).isRequired
     })
-  ).isRequired,
+  ),
   likedItems: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired

@@ -21,7 +21,7 @@ const AnimatedBackground = () => {
       options={{
         background: {
           color: {
-            value: '#D2B48C' // Tan background
+            value: '#b99769' // Tan background
           },
         },
         fpsLimit: 60,
@@ -56,7 +56,7 @@ const AnimatedBackground = () => {
             distance: 150,
             enable: true,
             opacity: 0.5,
-            width: 1,
+            width: 4,
           },
           collisions: {
             enable: true,
