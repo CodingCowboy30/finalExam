@@ -18,8 +18,8 @@ const StyledCard = styled(Card)`
   transition: transform 0.3s, box-shadow 0.3s;
   position: static;
   width: 60%;  /* Ensure cards take full width of the slide */
-  height: 45%;
- // padding: 10px 30px 10px 90px;
+  height: 635px;
+  padding: 10px 20px 50px 90px;
   &:hover {
     transform: scale(1.03);
     box-shadow: 0 4px 20px rgba(64, 224, 208, 0.6);
@@ -27,9 +27,9 @@ const StyledCard = styled(Card)`
 `
 
 const StyledCardMedia = styled(CardMedia)`
-  padding: 2px -1px;
-  height: 40%;
-  width: 100%;
+  padding: 2px 1px;
+  height: 80%;
+  width: 30px;
   object-fit: scale-down;
 `
 
@@ -39,9 +39,9 @@ const StyledTypography = styled(Typography)`
 `
 
 const LikeButton = styled(IconButton)`
-  position: absolute;
-  bottom: -16px;
-  right: -160px;
+  position: fixed;
+  bottom: 40px;
+  right: -280px;
   color: ${({ liked }) => (liked === true ? 'red' : 'rgb(255, 0, 0)')}; // Change color based on liked state
 `
 
@@ -93,7 +93,7 @@ const ProductList = ({ products = [], likedItems, onToggleLike }) => {
   }
 
   return (
-    <Box padding={[1, 4]} marginBottom={[9, 3]}>
+    <Box padding={[3, 4, 5, 6]} marginBottom={[1, 2]}>
       <StyledSlider {...settings}>
         {products.length > 0 ? (
           products.map((product) => {
@@ -109,7 +109,7 @@ const ProductList = ({ products = [], likedItems, onToggleLike }) => {
                         image={product.image}
                       />
                       <CardContent>
-                        <StyledTypography variant='h6' gutterBottom>
+                        <StyledTypography variant='h7' gutterBottom>
                           {product.title}
                         </StyledTypography>
                         <StyledTypography variant='body2' color='textSecondary'>
