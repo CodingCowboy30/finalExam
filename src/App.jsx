@@ -1,6 +1,6 @@
 // src/App.jsx
 import  { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { HashRouter, Route, Routes } from 'react-router-dom'
 import { ThemeProvider } from '@mui/material/styles'
 import NavBar from './components/NavBar'
 import Footer from './components/Footer'
@@ -42,7 +42,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <div className='App'>
         <AnimatedBackground />
-        <Router>
+        <HashRouter>
           <NavBar onSearch={handleSearch} />
           <Routes>
             <Route path='/' element={<ProductList products={filteredProducts} likedItems={likedItems} onToggleLike={handleToggleLike} />} />
@@ -50,7 +50,7 @@ const App = () => {
             <Route path='/liked' element={<LikedItems likedItems={likedItems} onToggleLike={handleToggleLike} />} />
           </Routes>
           <Footer />
-        </Router>
+        </HashRouter>
       </div>
     </ThemeProvider>
   )
